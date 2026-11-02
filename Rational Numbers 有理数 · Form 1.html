@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rational Numbers 有理数 · Form 1</title>
+<style>
+:root{--bg:#fbf8f2;--card:#fff;--ink:#23201c;--mute:#6f675c;--line:#e6dfd2;--acc:#d9531e;--accsoft:#fde9dd;--ok:#1f8a4c;--oksoft:#dff4e7;--bad:#c0392b;--badsoft:#fbe3e0;--blue:#2563a8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1814;--card:#25221d;--ink:#f1ece2;--mute:#a39a8b;--line:#3a352c;--acc:#ff8a57;--accsoft:#3b2a20;--ok:#59d28a;--oksoft:#1c3326;--bad:#ff7f70;--badsoft:#3b2220;--blue:#7db4f0;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1a1814;--card:#25221d;--ink:#f1ece2;--mute:#a39a8b;--line:#3a352c;--acc:#ff8a57;--accsoft:#3b2a20;--ok:#59d28a;--oksoft:#1c3326;--bad:#ff7f70;--badsoft:#3b2220;--blue:#7db4f0;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif}
+header{padding:28px 18px 8px;max-width:760px;margin:auto}
+h1{font:800 30px/1.2 Georgia,"Songti SC",serif;margin:0 0 4px}
+h1 span{color:var(--acc)}
+.sub{color:var(--mute);margin:0}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-top:14px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.tabs{display:flex;gap:6px;overflow-x:auto;max-width:760px;margin:auto;padding:8px 14px}
+.tabs button{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 13px;border-radius:99px;font:600 14px inherit;cursor:pointer}
+.tabs button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+main{max-width:760px;margin:auto;padding:16px 14px 60px}
+.panel{display:none}.panel.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+h2{font:700 20px/1.3 Georgia,"Songti SC",serif;margin:0 0 8px}
+h3{font-size:16px;margin:14px 0 6px}
+.en{color:var(--acc);font-weight:700}
+.tip{background:var(--accsoft);border-radius:12px;padding:10px 14px;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:15px}
+td,th{border:1px solid var(--line);padding:6px 10px;text-align:center}
+.scroll{overflow-x:auto}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px 16px;border-radius:12px;font:600 16px inherit;cursor:pointer}
+.btn:active{transform:scale(.97)}
+.btn.pri{background:var(--acc);color:#fff;border-color:var(--acc)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.big{font:700 34px/1.3 Georgia,serif;text-align:center;margin:12px 0}
+input[type=text]{font:600 20px inherit;padding:10px 12px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);width:150px;text-align:center}
+.fb{min-height:28px;margin-top:8px;font-weight:600}
+.fb.ok{color:var(--ok)}.fb.no{color:var(--bad)}
+.score{color:var(--mute);font-size:14px}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.15;margin:0 3px;font-size:.9em}
+.frac i{font-style:normal;padding:0 4px}
+.frac i:first-child{border-bottom:2px solid currentColor}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.fc{height:84px;border:1px solid var(--line);background:var(--card);border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;font-weight:700;cursor:pointer;color:var(--ink);font-size:16px}
+.fc.zh{background:var(--accsoft);color:var(--acc);font-size:20px}
+.opt{display:block;width:100%;text-align:left;margin:6px 0}
+.opt.sel{border-color:var(--acc);background:var(--accsoft)}
+.opt.ok{border-color:var(--ok);background:var(--oksoft)}
+.opt.bad{border-color:var(--bad);background:var(--badsoft)}
+input[type=range]{width:100%;accent-color:var(--acc)}
+.chips button{padding:6px 12px;font-size:14px}
+.chips button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.bar{height:8px;background:var(--line);border-radius:9px;overflow:hidden;margin:8px 0}
+.bar div{height:100%;background:var(--ok);width:0;transition:width .3s}
+</style>
+</head>
+<body>
+<header>
+<h1>Rational Numbers <span>有理数</span></h1>
+<p class="sub">Form 1 · Chapter 1 · 边学边玩的互动笔记</p>
+</header>
+<nav><div class="tabs" id="tabs"></div></nav>
+<main>
+
+<section class="panel" id="p-learn">
+<div class="card"><h2>什么是 <span class="en">Rational Numbers</span>？</h2>
+<p>有理数包括：<b>整数 Integers</b>、<b>分数 Fractions</b>、<b>小数 Decimals</b>，可以是正数、负数或零。</p>
+<div class="scroll"><table><tr><th>Positive 正</th><th>Zero 零</th><th>Negative 负</th></tr><tr><td>+5, +2, +1.5</td><td>0</td><td>-5, -2, -1.5</td></tr></table></div>
+<div class="tip">0 不是正数，也不是负数。负数不代表错误，只是代表“相反的状态”：温度 -5°C、欠别人 RM10。</div></div>
+
+<div class="card"><h2>Integers 整数</h2>
+<p>…, -3, -2, -1, 0, 1, 2, 3, …　不是整数：½、1.5、-2.7</p>
+<h3>比较大小 Comparing</h3>
+<div class="scroll"><table><tr><th>&gt;</th><th>&lt;</th><th>=</th></tr><tr><td>Greater than 大于</td><td>Less than 小于</td><td>Equal to 等于</td></tr></table></div>
+<div class="tip">数轴 Number Line：越往右越大。-2 &gt; -5，因为 -2 在 -5 的右边。负数越靠近 0 越大。</div></div>
+
+<div class="card"><h2>四则运算规则</h2>
+<div class="scroll"><table>
+<tr><th>Addition 加</th><td>同号相加，保留符号；异号相减，跟绝对值大的符号</td></tr>
+<tr><th>Subtraction 减</th><td>减去负数 = 加上正数：5 − (−2) = 5 + 2 = 7</td></tr>
+<tr><th>Multiplication 乘</th><td>同号正，异号负</td></tr>
+<tr><th>Division 除</th><td>同号正，异号负</td></tr></table></div></div>
+
+<div class="card"><h2>Fractions 分数 &amp; Decimals 小数</h2>
+<p><b>Numerator</b> 分子（上）／<b>Denominator</b> 分母（下）。分母不同时，先找 <b>Common denominator</b> 公分母。</p>
+<p>除以分数 = 乘以倒数 (Reciprocal)：<span class="frac"><i>1</i><i>2</i></span> ÷ <span class="frac"><i>1</i><i>4</i></span> = <span class="frac"><i>1</i><i>2</i></span> × <span class="frac"><i>4</i><i>1</i></span> = 2</p>
+<p>小数加减法要把<b>小数点对齐</b>。2.35：2 个位 Ones，3 十分位 Tenths，5 百分位 Hundredths。</p></div>
+
+<div class="card"><h2>谁是有理数？</h2>
+<p>能写成 <span class="frac"><i>a</i><i>b</i></span>（a、b 是整数，b ≠ 0）的数。整数 5 = <span class="frac"><i>5</i><i>1</i></span>；有限小数 0.5 = <span class="frac"><i>1</i><i>2</i></span>；循环小数 0.333… = <span class="frac"><i>1</i><i>3</i></span>，都是有理数。π 和 √2 <b>不是</b>。</p></div>
+
+<div class="card"><h2>常见指令词 Command words</h2>
+<div class="scroll"><table><tr><td>Evaluate 求值</td><td>Calculate 计算</td><td>Determine 确定</td></tr><tr><td>Arrange 排列</td><td>Simplify 化简</td><td>State 写出</td></tr></table></div></div>
+</section>
+
+<section class="panel" id="p-vocab">
+<div class="card"><h2>单词卡 Flashcards</h2><p class="sub">点一下卡片，翻面看中文／英文。</p>
+<div class="row" style="margin:10px 0"><button class="btn" id="vmode">模式：看英文猜中文</button><button class="btn" id="vshuf">打乱</button></div>
+<div class="cards" id="vcards"></div></div>
+</section>
+
+<section class="panel" id="p-line">
+<div class="card"><h2>📖 Part 1 · Integers 整数</h2>
+<h3>① 先认识三个词</h3><p><b>Positive</b> 正数（大于 0）、<b>Negative</b> 负数（小于 0）、<b>Zero</b> 零（不正也不负）。</p>
+<h3>② 什么是整数？</h3><p>没有分数、没有小数点的数：…, −2, −1, 0, 1, 2, …<br>✔ −5、0、8　✘ ½、1.5、−2.7</p>
+<h3>③ 负数在生活里</h3><p>零下 5°C = −5；欠别人 RM10 = −10；存款 RM10 = +10。负数只是“相反的状态”，不是错误。</p>
+<h3>④ 数轴 Number Line</h3><p>像横放的温度计：<b>越右越大，越左越小</b>。</p>
+<h3>⑤ 比大小</h3><p>正数 &gt; 0 &gt; 负数。两个负数比较时，<b>离 0 越近越大</b>：−1 &gt; −3 &gt; −6。</p>
+<div class="tip">⚠️ 常见错误：以为 −5 &gt; −2（因为 5 &gt; 2）。不确定时，先画数轴！</div></div>
+<div class="card"><h2>数轴 Number Line</h2>
+<p class="sub">拖动滑块，看数字在哪里。</p>
+<svg id="nl" viewBox="0 0 640 90" width="100%" role="img" aria-label="number line"></svg>
+<input type="range" id="nls" min="-10" max="10" value="3">
+<div class="big" id="nlv"></div></div>
+
+<div class="card"><h2>🎯 比大小 Greater, Less or Equal?</h2>
+<div class="big" id="cmpq"></div>
+<div class="row" style="justify-content:center"><button class="btn" data-c=">">&gt; Greater</button><button class="btn" data-c="<">&lt; Less</button><button class="btn" data-c="=">= Equal</button></div>
+<div class="fb" id="cmpf"></div><div class="score" id="cmps"></div></div>
+</section>
+
+<section class="panel" id="p-ops">
+<div class="card"><h2>📖 Part 2 · 整数四则运算</h2>
+<h3>➕ Addition 加法</h3><p>想像“有钱 = 正、欠钱 = 负”。<br><b>同号</b>：数字相加，保留符号。(−3)+(−2)：欠 3 又欠 2 = 欠 5，所以 −5。<br><b>异号</b>：大的数字减小的数字，符号跟<b>数字较大</b>的那个。(+5)+(−3) = +2；(−5)+(+3) = −2。</p>
+<h3>➖ Subtraction 减法</h3><p>口诀：<b>减去一个数 = 加上它的相反数</b>。<br>5 − (−2) = 5 + 2 = 7　　−5 − (−3) = −5 + 3 = −2<br>步骤：① “−”变“+” ② 后面的数变号 ③ 用加法规则。</p>
+<h3>✖️➗ Multiplication 乘法 &amp; Division 除法</h3><p><b>Same signs = Positive；Different signs = Negative。</b><br>(−3)×(−2) = +6　　3×(−2) = −6　　12 ÷ (−4) = −3<br>步骤：① 先决定符号 ② 再算数字。</p>
+<div class="tip">⚠️ 加法和乘法规则不同：(−3)+(−2) = −5，但 (−3)×(−2) = +6。</div></div>
+<div class="card"><h2>🧮 整数四则运算练习</h2>
+<div class="row chips" id="opchips"></div>
+<div class="big" id="opq"></div>
+<div class="row" style="justify-content:center"><input type="text" id="opa" inputmode="text" autocomplete="off" placeholder="答案"><button class="btn pri" id="opgo">检查</button></div>
+<div class="fb" id="opf"></div><div class="score" id="ops"></div>
+<div class="tip" id="oph" style="display:none"></div></div>
+</section>
+
+<section class="panel" id="p-frac">
+<div class="card"><h2>📖 Part 3 · Fractions 分数</h2>
+<p><b>Numerator</b> 分子（上） / <b>Denominator</b> 分母（下）。负号通常写在分数前面：−½ = (−1)/2。</p>
+<h3>加减法</h3><p>分母相同：分子加减，分母不变。¾ − ¼ = 2/4 = ½。<br>分母不同：① 找 <b>Common Denominator</b> 公分母 ② 通分 ③ 分子加减 ④ <b>Simplify</b> 化简。<br>½ + ⅓ = 3/6 + 2/6 = 5/6</p>
+<h3>乘法</h3><p>分子×分子，分母×分母，符号规则同整数。½ × ⅔ = 2/6 = ⅓；−½ × ⅔ = −⅓</p>
+<h3>除法</h3><p>除以一个分数 = 乘以它的 <b>Reciprocal</b> 倒数。½ ÷ ¼ = ½ × 4/1 = 2</p>
+<h3>化简</h3><p>分子分母同除以公因数：4/6 → 2/3。</p></div>
+<div class="card"><h2>📖 Part 4 · Decimals 小数</h2>
+<p>2.35：2 = Ones 个位，3 = Tenths 十分位，5 = Hundredths 百分位。<br>0.1 = 1/10，0.01 = 1/100。</p>
+<h3>加减法</h3><p><b>小数点对齐</b>！2.50 − 1.25 = 1.25。符号规则同整数。</p>
+<h3>乘除法</h3><p>1.2 × 2 = 2.4；(−1.2) × 2 = −2.4；4.8 ÷ 2 = 2.4；(−4.8) ÷ 2 = −2.4。</p>
+<div class="tip">⚠️ 0.5 比 0.45 大！比较小数先把位数补齐：0.50 vs 0.45。</div></div>
+<div class="card"><h2>🍕 分数 &amp; 小数练习</h2>
+<div class="row chips" id="frchips"></div>
+<div class="big" id="frq"></div>
+<p class="score" style="text-align:center" id="frhint"></p>
+<div class="row" style="justify-content:center"><input type="text" id="fra" autocomplete="off" placeholder="如 -1/4 或 1.2"><button class="btn pri" id="frgo">检查</button></div>
+<div class="fb" id="frf"></div><div class="score" id="frs"></div></div>
+</section>
+
+<section class="panel" id="p-sort">
+<div class="card"><h2>📖 Part 5 · Rational Numbers 有理数</h2>
+<p>能写成 <b>a/b</b>（a、b 是整数，b ≠ 0）的数，就是有理数。口诀：<b>能变成分数 = 有理数</b>。</p>
+<h3>为什么？</h3><p>整数：5 = 5/1，−3 = −3/1<br>有限小数：0.5 = 5/10 = ½，1.25 = 5/4<br>循环小数：0.333… = ⅓</p>
+<h3>不是有理数</h3><p>π、√2 不能写成两个整数的分数。</p>
+<h3>关系图</h3><p>有理数 ⊃ 整数、分数、小数（可以是正、负或零）。所以：每个整数都是有理数，但不是每个有理数都是整数（½ 不是整数）。</p></div>
+<div class="card"><h2>🗂 分类游戏 Is it Rational?</h2>
+<p class="sub">这个数属于哪一类？</p>
+<div class="big" id="sq"></div>
+<div class="row" style="justify-content:center">
+<button class="btn" data-s="int">Integer 整数</button>
+<button class="btn" data-s="rat">分数／小数 (有理数)</button>
+<button class="btn" data-s="irr">不是有理数</button></div>
+<div class="fb" id="sf"></div><div class="score" id="ss"></div></div>
+</section>
+
+<section class="panel" id="p-quiz">
+<div class="card"><h2>📝 小测验 Quiz</h2><div id="quiz"></div>
+<div class="bar"><div id="qbar"></div></div>
+<button class="btn pri" id="qcheck">Check My Answers</button>
+<div class="big" id="qres" style="font-size:24px"></div></div>
+</section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const fr=(n,d)=>`<span class="frac"><i>${n}</i><i>${d}</i></span>`;
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
+const sg=n=>n<0?`(${n})`:`${n}`;
+
+/* tabs */
+const T=[['learn','📖 笔记'],['vocab','🔤 词汇'],['line','📏 数轴'],['ops','🧮 运算'],['frac','🍕 分数小数'],['sort','🗂 分类'],['quiz','📝 测验']];
+T.forEach(([id,l],i)=>{const b=document.createElement('button');b.textContent=l;b.onclick=()=>show(id);b.dataset.id=id;$('#tabs').append(b)});
+function show(id){$$('.panel').forEach(p=>p.classList.toggle('on',p.id==='p-'+id));$$('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.id===id));scrollTo(0,0)}
+show('learn');
+
+/* vocab */
+const V=[['Rational Number','有理数'],['Integer','整数'],['Positive Number','正数'],['Negative Number','负数'],['Zero','零'],['Fraction','分数'],['Numerator','分子'],['Denominator','分母'],['Decimal','小数'],['Number Line','数轴'],['Addition','加法'],['Subtraction','减法'],['Multiplication','乘法'],['Division','除法'],['Greater than','大于'],['Less than','小于'],['Equal to','等于'],['Common Denominator','公分母'],['Reciprocal','倒数'],['Simplify','化简'],['Ascending Order','升序（小到大）'],['Descending Order','降序（大到小）']];
+let vz=false,vorder=V.map((_,i)=>i);
+function vr(){const c=$('#vcards');c.innerHTML='';vorder.forEach(i=>{const b=document.createElement('button');b.className='fc';const front=vz?V[i][1]:V[i][0],back=vz?V[i][0]:V[i][1];let f=true;b.textContent=front;b.onclick=()=>{f=!f;b.textContent=f?front:back;b.classList.toggle('zh',!f)};c.append(b)})}
+$('#vmode').onclick=e=>{vz=!vz;e.target.textContent=vz?'模式：看中文猜英文':'模式：看英文猜中文';vr()};
+$('#vshuf').onclick=()=>{vorder.sort(()=>Math.random()-.5);vr()};vr();
+
+/* number line */
+function drawNL(v){let s='<line x1="20" y1="45" x2="620" y2="45" stroke="currentColor" stroke-width="2"/>';
+for(let i=-10;i<=10;i++){const x=320+i*28;s+=`<line x1="${x}" y1="${i%5?39:34}" x2="${x}" y2="${i%5?51:56}" stroke="currentColor"/>`;if(i%5===0)s+=`<text x="${x}" y="76" text-anchor="middle" font-size="14" fill="currentColor">${i}</text>`}
+s+=`<circle cx="${320+v*28}" cy="45" r="9" fill="var(--acc)"/>`;$('#nl').innerHTML=s}
+function nlu(){const v=+$('#nls').value;drawNL(v);const k=v>0?'Positive 正数':v<0?'Negative 负数':'Zero 零';$('#nlv').innerHTML=`${v} <span class="en" style="font-size:18px">· ${k}</span>`}
+$('#nls').oninput=nlu;nlu();
+let cA,cB,cc=0,ct=0;
+function cmpNew(){do{cA=R(-9,9);cB=R(-9,9)}while(R(0,5)&&cA===cB);$('#cmpq').textContent=`${cA}  ?  ${cB}`}
+$$('[data-c]').forEach(b=>b.onclick=()=>{const r=cA>cB?'>':cA<cB?'<':'=';ct++;if(b.dataset.c===r){cc++;$('#cmpf').className='fb ok';$('#cmpf').textContent='✔ 对了！'}else{$('#cmpf').className='fb no';$('#cmpf').textContent=`✘ ${cA} ${r} ${cB}：${r==='>'?`${cA} 在数轴上更靠右`:r==='<'?`${cA} 在数轴上更靠左`:'两个数相等'}`}$('#cmps').textContent=`得分 ${cc}/${ct}`;cmpNew()});
+cmpNew();
+
+/* operations */
+let op='+',oa,ob,oans,oc=0,ot=0,ost=0;
+[['+','Addition +'],['−','Subtraction −'],['×','Multiplication ×'],['÷','Division ÷']].forEach(([o,l])=>{const b=document.createElement('button');b.className='btn';b.textContent=l;b.onclick=()=>{op=o;opNew()};b.dataset.o=o;$('#opchips').append(b)});
+function opNew(){$$('#opchips button').forEach(b=>b.classList.toggle('on',b.dataset.o===op));
+if(op==='÷'){ob=R(-9,9)||3;const q=R(-9,9);oa=ob*q;oans=q}else{oa=R(-9,9);ob=R(-9,9);oans=op==='+'?oa+ob:op==='−'?oa-ob:oa*ob}
+$('#opq').textContent=`${sg(oa)} ${op} ${sg(ob)} = ?`;$('#opa').value='';$('#oph').style.display='none'}
+function hint(){let t='';if(op==='+')t=(oa<0)===(ob<0)?'同号：数字相加，保留符号。':'异号：数字相减，跟绝对值较大的数的符号。';
+if(op==='−')t=`减去一个数 = 加上它的相反数：${sg(oa)} + ${sg(-ob)}`;
+if(op==='×'||op==='÷')t=((oa<0)===(ob<0)||oa===0)?'同号 Same signs = Positive (+)':'异号 Different signs = Negative (−)';return t}
+$('#opgo').onclick=()=>{const v=$('#opa').value.trim().replace('−','-');if(v==='')return;ot++;const f=$('#opf');
+if(+v===oans){oc++;ost++;f.className='fb ok';f.textContent=ost>=3?`✔ 正确！🔥 连对 ${ost} 题`:'✔ 正确！'}else{ost=0;f.className='fb no';f.textContent=`✘ 正确答案是 ${oans}`;const h=$('#oph');h.textContent='💡 '+hint();h.style.display='block';$('#ops').textContent=`得分 ${oc}/${ot}`;setTimeout(()=>{},0);oNext();return}
+$('#ops').textContent=`得分 ${oc}/${ot}`;oNext()}
+function oNext(){const h=$('#oph').style.display,t=$('#oph').textContent;opNew();if(h==='block'){$('#oph').textContent=t;$('#oph').style.display='block'}}
+$('#opa').onkeydown=e=>{if(e.key==='Enter')$('#opgo').click()};opNew();
+
+/* fractions & decimals */
+let fm='fadd',fq,fc=0,ft=0;
+[['fadd','分数加减'],['fmul','分数乘法'],['fdiv','分数除法'],['dadd','小数加减'],['dmul','小数乘整数']].forEach(([k,l])=>{const b=document.createElement('button');b.className='btn';b.textContent=l;b.onclick=()=>{fm=k;frNew()};b.dataset.k=k;$('#frchips').append(b)});
+function rf(){const d=[2,3,4,5,6][R(0,4)];let n=R(1,d-1);return[R(0,1)?n:-n,d]}
+const sf=([n,d])=>n<0?`-${fr(-n,d)}`:fr(n,d);
+function frNew(){$$('#frchips button').forEach(b=>b.classList.toggle('on',b.dataset.k===fm));let q;
+if(fm==='fadd'||fm==='fmul'||fm==='fdiv'){const a=rf(),b=rf(),o=fm==='fadd'?(R(0,1)?'+':'−'):fm==='fmul'?'×':'÷';
+let n,d;if(o==='+'){n=a[0]*b[1]+b[0]*a[1];d=a[1]*b[1]}else if(o==='−'){n=a[0]*b[1]-b[0]*a[1];d=a[1]*b[1]}else if(o==='×'){n=a[0]*b[0];d=a[1]*b[1]}else{n=a[0]*b[1];d=a[1]*b[0]}
+if(d<0){n=-n;d=-d}q={html:`${sf(a)} ${o} ${b[0]<0?'('+sf(b)+')':sf(b)} = ?`,n,d,hint:o==='÷'?'提示：除以分数 = 乘以倒数。答案请化简，如 -1/4':'提示：答案请化简成最简分数，如 -1/4；整数直接写 2'}}
+else{const a=R(-50,50)/10,b=R(-50,50)/10;if(fm==='dadd'){const o=R(0,1)?'+':'−';const r=Math.round((o==='+'?a+b:a-b)*10)/10;q={html:`${a.toFixed(1)} ${o} ${b<0?'('+b.toFixed(1)+')':b.toFixed(1)} = ?`,val:r,hint:'提示：小数点要对齐！'}}else{const k=R(-5,5)||2;q={html:`${a.toFixed(1)} × ${sg(k)} = ?`,val:Math.round(a*k*10)/10,hint:'提示：先用整数正负规则决定符号'}}}
+fq=q;$('#frq').innerHTML=q.html;$('#frhint').textContent=q.hint;$('#fra').value=''}
+function ansTxt(){if(fq.val!==undefined)return String(fq.val);const g=gcd(fq.n,fq.d)||1;const n=fq.n/g,d=fq.d/g;return d===1?String(n):`${n}/${d}`}
+$('#frgo').onclick=()=>{const v=$('#fra').value.trim().replace('−','-');if(!v)return;ft++;let ok=false;
+if(fq.val!==undefined)ok=Math.abs(parseFloat(v)-fq.val)<1e-9;else{const m=v.match(/^(-?\d+)\s*(?:\/\s*(-?\d+))?$/);if(m){const n=+m[1],d=m[2]?+m[2]:1;ok=d!==0&&n*fq.d===fq.n*d}}
+const f=$('#frf');if(ok){fc++;f.className='fb ok';f.textContent='✔ 正确！'}else{f.className='fb no';f.textContent=`✘ 正确答案：${ansTxt()}`}
+$('#frs').textContent=`得分 ${fc}/${ft}`;frNew()};
+$('#fra').onkeydown=e=>{if(e.key==='Enter')$('#frgo').click()};frNew();
+
+/* sort game */
+const S=[['5','int','5 = 5/1，是整数'],['-3','int','负整数也是整数'],['0','int','0 是整数'],['½','rat','分数是有理数'],['-¾','rat','负分数是有理数'],['0.5','rat','0.5 = 1/2'],['-1.25','rat','有限小数 = 分数'],['0.333…','rat','循环小数 = 1/3'],['2.8','rat','2.8 = 28/10'],['-2.7','rat','有限小数是有理数，但不是整数'],['π','irr','π 不能写成两个整数的分数'],['√2','irr','√2 不能写成两个整数的分数'],['7','int','正整数']];
+let sc=0,st=0,si=0;
+function sNew(){si=R(0,S.length-1);$('#sq').textContent=S[si][0]}
+$$('[data-s]').forEach(b=>b.onclick=()=>{st++;const ok=b.dataset.s===S[si][1];if(ok)sc++;$('#sf').className='fb '+(ok?'ok':'no');$('#sf').textContent=(ok?'✔ ':'✘ ')+S[si][0]+'：'+S[si][2];$('#ss').textContent=`得分 ${sc}/${st}`;sNew()});sNew();
+
+/* quiz */
+const Q=[['Which of the following is an integer?',['1.5','-3','½','2.8'],1,'整数没有分数或小数部分。'],['What is (-5) + (-3)?',['8','-8','2','-2'],1,'同号相加，保留负号。'],['What is 6 − (−2)?',['4','-4','8','-8'],2,'减去负数 = 加上正数：6 + 2。'],['What is (-4) × 3?',['12','-12','7','-7'],1,'异号相乘得负。'],['Which of the following is a rational number?',['π','√2','0.5','Both π and √2'],2,'0.5 = 1/2。']];
+const qa=Q.map(()=>-1);
+Q.forEach((q,i)=>{const d=document.createElement('div');d.innerHTML=`<h3>${i+1}. ${q[0]}</h3>`;q[1].forEach((o,j)=>{const b=document.createElement('button');b.className='btn opt';b.textContent=o;b.onclick=()=>{if($('#qcheck').disabled)return;qa[i]=j;[...d.querySelectorAll('.opt')].forEach((x,k)=>x.classList.toggle('sel',k===j));$('#qbar').style.width=qa.filter(x=>x>=0).length/Q.length*100+'%'};d.append(b)});const e=document.createElement('div');e.className='score';d.append(e);$('#quiz').append(d)});
+$('#qcheck').onclick=()=>{if(qa.includes(-1)){$('#qres').textContent='请先回答全部题目';return}let s=0;[...$('#quiz').children].forEach((d,i)=>{const o=d.querySelectorAll('.opt');o.forEach((x,k)=>{x.classList.remove('sel');if(k===Q[i][2])x.classList.add('ok');else if(k===qa[i])x.classList.add('bad')});if(qa[i]===Q[i][2])s++;d.lastChild.textContent='💡 '+Q[i][3]});
+$('#qres').textContent=`${s}/${Q.length} ${s===5?'🎉 太棒了！':s>=3?'👍 不错，再看看错的题':'💪 再复习一下笔记'}`;$('#qcheck').disabled=true}
+/* extra: skip buttons + random practice engine */
+const sk=(el,fn)=>{const b=document.createElement('button');b.className='btn';b.textContent='🎲 换一题';b.onclick=fn;el.after(b)};
+sk($('#opgo'),opNew);sk($('#frgo'),frNew);sk($('#cmpf'),cmpNew);sk($('#sf'),sNew);
+const pick=a=>a[R(0,a.length-1)],N=s=>String(s).replace(/−/g,'-').replace(/\s/g,'').toLowerCase();
+function engine(host,title,gens){const c=document.createElement('div');c.className='card';
+c.innerHTML=`<h2>${title}</h2><div class="big" style="font-size:24px"></div><div class="ch row" style="justify-content:center"></div><div class="fb"></div><div class="score"></div><div class="row" style="justify-content:center;margin-top:8px"><button class="btn pri">🎲 换一题</button></div>`;
+$('#p-'+host).append(c);const Q_=c.querySelector('.big'),CH=c.querySelector('.ch'),FB=c.querySelector('.fb'),SC=c.querySelector('.score');let cur,ok=0,n=0,done;
+function next(){cur=pick(gens)();done=false;Q_.innerHTML=cur.q;FB.textContent='';FB.className='fb';CH.innerHTML='';
+if(cur.o)cur.o.forEach(t=>{const b=document.createElement('button');b.className='btn';b.textContent=t;b.onclick=()=>chk(t);CH.append(b)});
+else{const i=document.createElement('input');i.type='text';i.placeholder='答案';i.autocomplete='off';const g=document.createElement('button');g.className='btn pri';g.textContent='检查';g.onclick=()=>chk(i.value);i.onkeydown=e=>{if(e.key==='Enter')g.click()};CH.append(i,g)}}
+function chk(v){if(done||!String(v).trim())return;done=true;n++;const a=[].concat(cur.a),g=a.some(x=>N(x)===N(v));if(g)ok++;FB.className='fb '+(g?'ok':'no');FB.innerHTML=(g?'✔ 正确！':'✘ 答案：'+a[0])+'　'+(cur.e||'');SC.textContent=`得分 ${ok}/${n}`}
+c.querySelector('.row:last-child button').onclick=next;next()}
+const gInt=[
+()=>{const x=pick(['5','-3','0','1/2','1.5','-2.7','8','-12','3.14','-1']),y=/^-?\d+$/.test(x);return{q:`${x} 是整数 (Integer) 吗？`,o:['是','不是'],a:y?'是':'不是',e:y?'没有分数或小数部分。':'有分数／小数部分，不是整数。'}},
+()=>{const s=new Set;while(s.size<4)s.add(R(-9,9));const a=[...s];return{q:`Ascending order 由小到大排列：<br>${a.join(' , ')}<br><small>（用逗号分开）</small>`,a:[...a].sort((x,y)=>x-y).join(','),e:'越靠左越小。'}},
+()=>{const k=pick(['温度零下 ','欠别人 RM','银行存款 RM','温度是 ']),n=R(2,30),ng=k[0]==='温'&&k[2]==='零'||k[0]==='欠';return{q:`${k}${n}${k[0]==='温'?'°C':''}，用整数怎么写？`,a:(ng?'-':'')+n,e:ng?'相反的状态用负数。':'正数。'}},
+()=>{const a=R(-6,6),k=R(1,5),L=R(0,1);return{q:`在数轴上，${a} 的${L?'右':'左'}边第 ${k} 个整数是？`,a:String(L?a+k:a-k),e:'右边加，左边减。'}}];
+const gOp=[
+()=>{const a=R(1,9),b=R(1,9),A=R(0,1)?a:-a,B=R(0,1)?b:-b;return{q:`(${A}) ${R(0,1)?'×':'÷'} (${B}) 的符号是？`,o:['Positive','Negative'],a:(A<0)===(B<0)?'Positive':'Negative',e:'Same signs = Positive；Different signs = Negative。'}},
+()=>{const a=R(1,9),b=R(1,9);return{q:`${a} − (−${b}) = ${a} + ?`,a:String(b),e:'减去负数 = 加上正数。'}},
+()=>{const a=R(1,9),b=R(1,9);return{q:`你有 RM${a}，欠别人 RM${b}。(+${a}) + (−${b}) = ?`,a:String(a-b),e:'异号相减，跟绝对值大的符号。'}},
+()=>{const a=R(2,9),b=R(2,9);return{q:`(−${a}) + (−${b}) = ?　(−${a}) × (−${b}) = ?<br><small>用逗号分开两个答案</small>`,a:`${-a-b},${a*b}`,e:'加法保留负号相加；乘法同号得正。'}}];
+const gFr=[
+()=>{const n=R(1,7),d=R(n+1,9),w=R(0,1);return{q:`${fr(n,d)} 的 ${w?'Denominator 分母':'Numerator 分子'} 是？`,a:String(w?d:n),e:'上面分子，下面分母。'}},
+()=>{const [n,d]=pick([[1,2],[1,3],[2,3],[3,4],[2,5],[3,5],[1,4],[5,6]]),k=R(2,4);return{q:`Simplify 化简：${fr(n*k,d*k)}<br><small>（写成 a/b）</small>`,a:`${n}/${d}`,e:`分子分母同除以 ${k}。`}},
+()=>{const n=R(1,5),d=R(n+1,9),g=R(0,1);return{q:`${g?'−':''}${fr(n,d)} 的 Reciprocal 倒数 是？<br><small>（写成 a/b）</small>`,a:`${g?'-':''}${d}/${n}`,e:'分子分母交换，符号不变。'}},
+()=>{const a=pick([2,3,4]),b=pick([3,5,6]);return{q:`${fr(1,a)} + ${fr(1,b)} 的最小 Common Denominator 是？`,a:String(a*b/gcd(a,b)),e:'找 a 和 b 的最小公倍数。'}}];
+const gDe=[
+()=>{const d=[1,2,3,4,5,6,7,8,9].sort(()=>Math.random()-.5),p=R(0,2),o=['Ones 个位','Tenths 十分位','Hundredths 百分位'];return{q:`在 ${d[0]}.${d[1]}${d[2]} 中，数字 ${d[p]} 在哪一位？`,o,a:o[p],e:'小数点后第 1 位 = 十分位，第 2 位 = 百分位。'}},
+()=>{const [x,f]=pick([['0.5','1/2'],['0.25','1/4'],['0.75','3/4'],['0.2','1/5'],['0.8','4/5'],['1.5','3/2'],['0.1','1/10']]);return{q:`把 ${x} 写成最简分数 (a/b)`,a:f,e:'先写成 /10 或 /100，再化简。'}},
+()=>{const a=R(1,9)/10;let b=R(1,99)/100;if(b===a)b=0.01;return{q:'哪一个比较大？',o:[String(a),String(b)],a:String(a>b?a:b),e:`补齐位数：${a.toFixed(2)} vs ${b.toFixed(2)}。`}}];
+const gRa=[
+()=>{const s=pick([['每个整数都是有理数','对','5 = 5/1。'],['π 是有理数','错','π 不能写成两个整数的分数。'],['0 是正数','错','0 不是正数也不是负数。'],['0.333… 是有理数','对','0.333… = 1/3。'],['−3 是正数','错','负数小于 0。'],['有限小数都是有理数','对','0.5 = 5/10。'],['√2 是有理数','错','√2 不能写成分数。'],['½ 是整数','错','分数不是整数。']]);return{q:`对还是错？<br>${s[0]}`,o:['对','错'],a:s[1],e:s[2]}},
+()=>{const n=R(-9,9);return{q:`把整数 ${n} 写成分数（分母 1）`,a:`${n}/1`,e:'任何整数 n = n/1。'}}];
+engine('line','🎲 整数随机练习',gInt);engine('ops','🎲 运算概念练习',gOp);engine('frac','🎲 分数概念练习',gFr);engine('frac','🎲 小数概念练习',gDe);engine('sort','🎲 有理数概念练习',gRa);engine('quiz','🔀 综合随机练习（全部章节）',[...gInt,...gOp,...gFr,...gDe,...gRa]);
+</script>
+</body>
+</html>
